@@ -19,8 +19,8 @@ namespace testform
         {
             InitializeComponent();
         }
-        private bool ajoutWasClicked = false;
-        private bool modWasClicked = false;
+        
+        private bool btn = false;
         private void button_Ajouter(object sender, EventArgs e)
         {
 
@@ -44,6 +44,8 @@ namespace testform
             button2.Enabled = false;
             button1.Enabled = false;
             button3.Enabled = false;
+
+
             textBox1.Enabled = true;
             textBox2.Enabled = true;
             textBox3.Enabled = true;
@@ -53,6 +55,19 @@ namespace testform
 
         private void button_Modifier(object sender, EventArgs e)
         {
+            //activer désactiver les boutons
+            button5.Enabled = false;
+            button4.Enabled = true;
+            button2.Enabled = false;
+            button1.Enabled = true;
+            button3.Enabled = false;
+
+
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
+
+
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-U783UJF\\SQLEXPRESS;Initial Catalog=livre;Integrated Security=True");
             con.Open();
             SqlCommand cmd = new SqlCommand("update biblio set nom='" + textBox1.Text + "',prix= '" + int.Parse(textBox2.Text) + "' where id='" + int.Parse(textBox3.Text) + "'", con);
@@ -68,19 +83,22 @@ namespace testform
             }
             con.Close();
 
-            button5.Enabled = false;
-            button4.Enabled = true;
-            button2.Enabled = false;
-            button1.Enabled = true;
-            button3.Enabled = false;
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
-            textBox3.Enabled = true;
 
         }
 
         private void button_Supprimer(object sender, EventArgs e)
         {
+            button5.Enabled = false;
+            button4.Enabled = false;
+            button2.Enabled = false;
+            button1.Enabled = true;
+            button3.Enabled = false;
+
+
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-U783UJF\\SQLEXPRESS;Initial Catalog=livre;Integrated Security=True");
             con.Open();
             SqlCommand cmd = new SqlCommand("Delete from biblio  where id='" + int.Parse(textBox3.Text) + "'", con);
@@ -96,20 +114,23 @@ namespace testform
             }
             con.Close();
 
-            button5.Enabled = false;
-            button4.Enabled = false;
-            button2.Enabled = false;
-            button1.Enabled = true;
-            button3.Enabled = false;
-            textBox1.Enabled = false;
-            textBox2.Enabled = false;
-            textBox3.Enabled = false;
+
 
         }
 
         private void button_Enregistrer(object sender, EventArgs e)
         {
 
+            button5.Enabled = false;
+            button4.Enabled = false;
+            button2.Enabled = true;
+            button1.Enabled = true;
+            button3.Enabled = true;
+
+
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
 
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-U783UJF\\SQLEXPRESS;Initial Catalog=livre;Integrated Security=True");
             con.Open();
@@ -127,14 +148,6 @@ namespace testform
             con.Close();
 
 
-            button5.Enabled = false;
-            button4.Enabled = false;
-            button2.Enabled = true;
-            button1.Enabled = true;
-            button3.Enabled = true;
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
-            textBox3.Enabled = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -147,6 +160,8 @@ namespace testform
             button2.Enabled = false;
             button1.Enabled = true;
             button3.Enabled = false;
+
+
             textBox1.Enabled = false;
             textBox2.Enabled = false;
             textBox3.Enabled = false;
@@ -155,16 +170,18 @@ namespace testform
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (modWasClicked)
+            if (btn)
             {
 
                 
 
-                button5.Enabled = false;//anuuler
-                button4.Enabled = false;//
+                button5.Enabled = false;
+                button4.Enabled = false;
                 button2.Enabled = true;
                 button1.Enabled = true;
                 button3.Enabled = true;
+
+
                 textBox3.Enabled = false;
                 textBox1.Enabled = false;
                 textBox2.Enabled = false;
@@ -181,11 +198,13 @@ namespace testform
                 button2.Enabled = false;
                 button1.Enabled = true;
                 button3.Enabled = false;
+
+
                 textBox3.Enabled = false;
                 textBox1.Enabled = false;
-                textBox2.Clear();
                 textBox2.Enabled = false;
                 textBox1.Clear();
+                textBox2.Clear();
                 textBox3.Clear();
 
             }
